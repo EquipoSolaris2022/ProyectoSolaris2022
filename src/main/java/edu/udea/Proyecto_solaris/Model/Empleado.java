@@ -3,9 +3,9 @@ package edu.udea.Proyecto_solaris.Model;
 public class Empleado {
     private String nombre;
     private String correo;
-    private String empresa;
+    private Empresa empresa;
     private String rol;
-    public Empleado(String nombre, String correo, String empresa, String rol) {
+    public Empleado(String nombre, String correo, Empresa empresa, String rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.empresa = empresa;
@@ -22,3 +22,24 @@ public class Empleado {
     public String getCorreo() {
         return correo;
     }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+}
