@@ -1,16 +1,31 @@
 package edu.udea.Proyecto_solaris.Model;
 
+import java.util.List;
+
 public class Empleado {
+
+    private int id;
     private String nombre;
     private String correo;
     private Empresa empresa;
     private String rol;
+
+    private List<Movimiento_dinero> transacciones;
     public Empleado(String nombre, String correo, Empresa empresa, String rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.empresa = empresa;
         this.rol = rol;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -41,5 +56,13 @@ public class Empleado {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public List<Movimiento_dinero> getTransacciones() {
+        return transacciones;
+    }
+
+    public void setTransacciones(List<Movimiento_dinero> transacciones) {
+        this.transacciones = transacciones;
     }
 }
