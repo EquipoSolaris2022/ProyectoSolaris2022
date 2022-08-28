@@ -6,14 +6,14 @@ public class Empresa {
     private long id;
     private String nombre;
     private String direccion;
-    private int telefono;
-    private int NIT;
+    private String telefono;
+    private String NIT;
 
     private List<Empleado> empleados;
 
     private List<Movimiento_dinero> transacciones;
 
-    public Empresa(String nombre, String direccion, int telefono, int NIT) {
+    public Empresa(String nombre, String direccion, String telefono, String NIT) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -44,19 +44,19 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public int getNIT() {
+    public String getNIT() {
         return NIT;
     }
 
-    public void setNIT(int NIT) {
+    public void setNIT(String NIT) {
         this.NIT = NIT;
     }
 
