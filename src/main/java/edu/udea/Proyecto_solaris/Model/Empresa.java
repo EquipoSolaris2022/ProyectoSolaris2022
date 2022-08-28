@@ -3,7 +3,7 @@ package edu.udea.Proyecto_solaris.Model;
 import java.util.List;
 
 public class Empresa {
-    private int id;
+    private long id;
     private String nombre;
     private String direccion;
     private int telefono;
@@ -20,11 +20,11 @@ public class Empresa {
         this.NIT = NIT;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

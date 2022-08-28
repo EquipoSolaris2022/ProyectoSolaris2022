@@ -3,7 +3,7 @@ package edu.udea.Proyecto_solaris.Model;
 
 public class Movimiento_dinero {
 
-    private int id;
+    private long id;
     private float monto;
     private String concepto;
     private Empleado empleado;
@@ -16,11 +16,11 @@ public class Movimiento_dinero {
         this.empleado = empleado;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
