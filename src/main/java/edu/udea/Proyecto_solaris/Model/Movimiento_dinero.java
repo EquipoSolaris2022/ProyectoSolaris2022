@@ -7,6 +7,7 @@ public class Movimiento_dinero {
     private String concepto;
     private Empleado empleado;
     private int consecutivo;
+    private Empresa empresa;
 
 
     public Movimiento_dinero(double monto, String concepto, Empleado empleado, int consecutivo) {
@@ -48,5 +49,12 @@ public class Movimiento_dinero {
 
     public void setConsecutivo(int consecutivo) {
         this.consecutivo = consecutivo;
+    }
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }
