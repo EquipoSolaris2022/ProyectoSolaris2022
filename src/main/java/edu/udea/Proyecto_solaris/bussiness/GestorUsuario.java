@@ -1,7 +1,8 @@
 package edu.udea.Proyecto_solaris.bussiness;
 
 
-import edu.udea.main.model.Usuario;
+
+import edu.udea.Proyecto_solaris.Model.Usuario;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
