@@ -15,7 +15,7 @@ public class GestorMovimiento_dinero {
     public GestorMovimiento_dinero() {
         this.movimientos=new ArrayList<>();
         // se deben añadir los movimientos de prueba
-        Empresa MisionTIC =new Empresa("misiontic", "calle 1",316, 901 );
+        Empresa MisionTIC =new Empresa("empresa1","norte 1","12345","12345678");
         Empleado Andres=new Empleado("andres", "andrestapia@gmail.com",MisionTIC,"administrador" );
         this.movimientos.add(new Movimiento_dinero(100,"gasto",Andres,1));
     }

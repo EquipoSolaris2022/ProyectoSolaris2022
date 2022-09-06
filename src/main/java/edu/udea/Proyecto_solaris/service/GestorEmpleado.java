@@ -12,16 +12,24 @@ public class GestorEmpleado {
     el sistema permite consultar (uno y varios), crear, editar y eliminar Usuarios de Empleados
     */
     private ArrayList<Empleado> empleados;
+    private ArrayList<Empresa> empresa;
 
     public GestorEmpleado(){
+        this.empresa = new ArrayList<>();
         this.empleados = new ArrayList<>();
-        this.empleados.add(new empleado("Prueba1", "Prueba","1234"));
-        this.empleados.add(new empleado("Prueba1", "Andres","1234"));
+
+        //String nombre, String direccion, String telefono, String NIT
+
+        this.empresa.add(new Empresa("empresa1", "calle falsa 123", "3111111", "123456789"));
+
+
+        this.empleados.add(new Empleado("Prueba1", "Prueba", empresa.get(0),"operador"));
+        this.empleados.add(new Empleado("Prueba1", "Andres", empresa.get(0), "admin"));
     }
 
     public Empleado getEmpleado(String nombreEmpleado) throws Exception {
         for(Empleado empleado: this.empleados){
-            if(empleado.getNombreEmpleado().equals(nombreEmpleado) ){
+            if(empleado.getNombre().equals(nombreEmpleado) ){
                 return empleado;
             }
         }
@@ -31,7 +39,7 @@ public class GestorEmpleado {
     //getAll
 
     public ArrayList<Empleado> getEmpleado()  {
-            return empleado;
+            return empleados;
         }
 
     //hacer el set
@@ -39,7 +47,7 @@ public class GestorEmpleado {
     public String setEmpleado(Empleado empleado_parametro) throws Exception {
         try {
             //Consulta de existencia de empleado
-            getEmpleado(empleado_parametro.getNombreEmpleado());
+            getEmpleado(empleado_parametro.getNombre());
             } catch (Exception e) {
                 // Codigo de crear un Empleado
                 this.empleados.add(empleado_parametro);
@@ -49,23 +57,21 @@ public class GestorEmpleado {
             throw new Exception("Emplado ya Existe");
     }
 
-    public void setEmpleados(ArrayList<Empleado> empleados) {this.empleados = empleados}
+    //public void setEmpleados(ArrayList<Empleado> empleados) {this.empleados = empleados;}
+    //public void setUsuarios(ArrayList<Movimiento_dinero> movimientos) {this.movimientos = movimientos;}
 
     public Empleado updateEmpleado(Empleado empleado_update, String id) throws Exception {
             try {
                 Empleado empleado_bd = getEmpleado(id);
 
-                if(empleado_update.getNombreEmpleado() != null && !empleado_update.getNombreEmpleado().equals("")){
-                    empleado_bd.setNombreEmpleado(empleado_update.getNombreEmpleado());
-                }
-
                 if(empleado_update.getNombre() != null && !empleado_update.getNombre().equals("")){
                     empleado_bd.setNombre(empleado_update.getNombre());
                 }
 
-                if(empleado_update.getPassword() != null && !empleado_update.getPassword().equals("")) {
-                    empleado_bd.setPassword(empleado_update.getPassword());
+                if(empleado_update.getCorreo() != null && !empleado_update.getCorreo().equals("")){
+                    empleado_bd.setCorreo(empleado_update.getCorreo());
                 }
+
 
                 return empleado_bd;
             } catch (Exception e) {
@@ -78,9 +84,9 @@ public class GestorEmpleado {
             try {
                 Empleado empleado_bd = getEmpleado(id);
 
-                empleado_bd.setNombreEmpleado(empleado_update.getNombreEmpleado());
                 empleado_bd.setNombre(empleado_update.getNombre());
-                empleado_bd.setPassword(empleado_update.getPassword());
+                empleado_bd.setCorreo(empleado_update.getCorreo());
+
 
                 return empleado_bd;
             } catch (Exception e) {
