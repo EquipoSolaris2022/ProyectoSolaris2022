@@ -1,4 +1,5 @@
 package edu.udea.Proyecto_solaris.Model;
+import  edu.udea.Proyecto_solaris.Model.*;
 
 
 public class Movimiento_dinero {

@@ -1,8 +1,7 @@
 package edu.udea.Proyecto_solaris.service;
 
-import edu.udea.Proyecto_solaris.Model.Empleado;
-import edu.udea.Proyecto_solaris.Model.Empresa;
-import edu.udea.Proyecto_solaris.Model.Movimiento_dinero;
+import edu.udea.Proyecto_solaris.Model.*;
+
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
@@ -21,7 +20,6 @@ public class GestorEmpleado {
         //String nombre, String direccion, String telefono, String NIT
 
         this.empresa.add(new Empresa("empresa1", "calle falsa 123", "3111111", "123456789"));
-
 
         this.empleados.add(new Empleado("Prueba1", "Prueba", empresa.get(0),"operador"));
         this.empleados.add(new Empleado("Prueba1", "Andres", empresa.get(0), "admin"));

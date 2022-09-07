@@ -1,8 +1,8 @@
 package edu.udea.Proyecto_solaris.Controller;
 
-import edu.udea.Proyecto_solaris.Model.ObjetoRespuesta;
-import edu.udea.Proyecto_solaris.Model.Usuario;
-import edu.udea.Proyecto_solaris.bussiness.GestorUsuario;
+
+import edu.udea.Proyecto_solaris.Model.*;
+import edu.udea.Proyecto_solaris.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,18 +12,18 @@ import java.util.List;
 
 @RestController
 public class UsuarioControlador {
-    GestorUsuario gestorUsuario = new GestorUsuario();
+    GestorEmpleado gestorUsuario = new GestorEmpleado();
 
     @GetMapping("/usuarios")
-    public ResponseEntity <ArrayList<Usuario>> getUsuarios(){
-        return new ResponseEntity<>(gestorUsuario.getUsuarios(), HttpStatus.ACCEPTED);
+    public ResponseEntity <ArrayList<Empleado>> getUsuarios(){
+        return new ResponseEntity<>(gestorUsuario.getEmpleados(), HttpStatus.ACCEPTED);
 
     }
 
     @PostMapping("/usuarios")
-    public ResponseEntity<String> postUsuarios(@RequestBody Usuario usuario) {
+    public ResponseEntity<String> postUsuarios(@RequestBody Empleado usuario) {
         try {
-            String mensaje = gestorUsuario.setUsuario(usuario);
+            String mensaje = gestorUsuario.setEmpleado(usuario);
             return new ResponseEntity<>(mensaje, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -38,7 +38,7 @@ public class UsuarioControlador {
     @DeleteMapping("/usuario/{id}")
     public ResponseEntity <ObjetoRespuesta> deleteUsuario(@PathVariable String nombre){
         try {
-            String mensaje = gestorUsuario.deleteUsuario(nombre);
+            String mensaje = gestorUsuario.deleteEmpleado(nombre);
 
             return new ResponseEntity<>(new ObjetoRespuesta(mensaje,null),HttpStatus.OK);
         } catch (Exception e) {
@@ -46,9 +46,9 @@ public class UsuarioControlador {
         }
     }
     @PatchMapping("/usuario/{id}")
-    public ResponseEntity <ObjetoRespuesta> patchUsuario(@RequestBody Usuario useri, @PathVariable String id) {
+    public ResponseEntity <ObjetoRespuesta> patchUsuario(@RequestBody Empleado useri, @PathVariable String id) {
         try {
-            Usuario user = gestorUsuario.updateUsuario(useri, id);
+            Empleado user = gestorUsuario.updateEmpleado(useri, id);
             return new ResponseEntity<>(new ObjetoRespuesta("Actualización Exitosa", user), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);

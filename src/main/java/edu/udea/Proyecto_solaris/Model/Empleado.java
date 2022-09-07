@@ -1,7 +1,7 @@
 package edu.udea.Proyecto_solaris.Model;
 
 import java.util.List;
-
+import  edu.udea.Proyecto_solaris.Model.*;
 public class Empleado {
 
     private long id;

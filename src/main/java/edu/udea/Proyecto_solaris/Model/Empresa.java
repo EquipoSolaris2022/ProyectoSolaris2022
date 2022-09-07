@@ -1,6 +1,7 @@
 package edu.udea.Proyecto_solaris.Model;
 
 import java.util.List;
+import  edu.udea.Proyecto_solaris.Model.*;
 
 public class Empresa {
     private long id;
