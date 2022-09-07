@@ -10,7 +10,7 @@ public class GestorEmpresa {
 
     public GestorEmpresa(){
         this.empresas = new ArrayList<>();
-        this.empresas.add(new Empresa("empresa1","norte 1","12345","12345678"));
+        this.empresas.add(new Empresa(1,"empresa1","norte 1","12345","12345678"));
     }
 
     //Consultar todas las empresas

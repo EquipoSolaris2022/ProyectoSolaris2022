@@ -11,11 +11,15 @@ public class Empleado {
     private String rol;
 
     private List<Movimiento_dinero> transacciones;
-    public Empleado(String nombre, String correo, Empresa empresa, String rol) {
+    public Empleado(long id, String nombre, String correo, Empresa empresa, String rol) {
+        this.id=id;
         this.nombre = nombre;
         this.correo = correo;
         this.empresa = empresa;
         this.rol = rol;
+    }
+
+    public Empleado() {
     }
 
     public long getId() {

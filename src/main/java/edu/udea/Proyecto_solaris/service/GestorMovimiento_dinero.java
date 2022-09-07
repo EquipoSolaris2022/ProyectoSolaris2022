@@ -12,17 +12,17 @@ public class GestorMovimiento_dinero {
     el sistema permite consultar (uno y varios), crear, editar y eliminar movimiento de dinero
     */
     private ArrayList<Movimiento_dinero> movimientos;
+    private ArrayList<Empresa> empresa;
     public GestorMovimiento_dinero() {
         this.movimientos=new ArrayList<>();
-        // se deben añadir los movimientos de prueba
-        Empresa MisionTIC =new Empresa("empresa1","norte 1","12345","12345678");
-        Empleado Andres=new Empleado("andres", "andrestapia@gmail.com",MisionTIC,"administrador" );
-        this.movimientos.add(new Movimiento_dinero(100,"gasto",Andres,1));
+        Empresa MisionTIC =new Empresa(1,"empresa1","norte 1","12345","12345678");
+        Empleado Andres=new Empleado(1,"andres", "andrestapia@gmail.com",MisionTIC,"administrador" );
+        this.movimientos.add(new Movimiento_dinero(100,"gasto",Andres,1,MisionTIC));
     }
-    //hacer el get pero se necesita un ID para el
-    public Movimiento_dinero getMovimiento(int consecutivo) throws Exception {
+
+    public Movimiento_dinero getMovimiento(long id) throws Exception {
         for(Movimiento_dinero movimiento:this.movimientos){
-            if(movimiento.getConsecutivo()==consecutivo){
+            if(movimiento.getId()==id){
                 return movimiento;
             }
         }
@@ -34,34 +34,33 @@ public class GestorMovimiento_dinero {
     public ArrayList<Movimiento_dinero> getMovimientos()  {
         return movimientos;
     }
-    //hacer el set
     public String setMovimiento(Movimiento_dinero moviparam) throws Exception {
         try {
             //Consulta de existencia de usuario
-            getMovimiento(moviparam.getConsecutivo());
+            getMovimiento(moviparam.getId());
         } catch (Exception e) {
-            // Codigo de crear un usuario
+            // Codigo de crear un movimiento
             this.movimientos.add(moviparam);
-            return "Creacion del usuario Exitosa";
+            return "Creacion del movimiento Exitosa";
         }
-        //Error si el usuario ya existe
-        throw new Exception("Usuario Existe");
+        //Error si el movimiento ya existe
+        throw new Exception("Movimiento Existe");
     }
 
-    public void setUsuarios(ArrayList<Movimiento_dinero> movimientos) {this.movimientos = movimientos;}
+    public void setMovimientos(ArrayList<Movimiento_dinero> movimientos) {this.movimientos = movimientos;}
 
     //hacer el update parcial
-    public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, int consecutivo) throws Exception {
+    public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, long id) throws Exception {
         try {
-            Movimiento_dinero movi =getMovimiento(consecutivo);
-            if(movimientoact.getMonto() != 0){
-                movi.setMonto(movimientoact.getMonto());
+            Movimiento_dinero movi =getMovimiento(id);
+            if(movimientoact.getMonto(id) != 0){
+                movi.setMonto(id,movimientoact.getMonto(id));
             }
-            if(movimientoact.getConcepto() != null){
-                movi.setConcepto(movimientoact.getConcepto());
+            if(movimientoact.getConcepto(id) != null){
+                movi.setConcepto(id,movimientoact.getConcepto(id));
             }
-            if(movimientoact.getEmpleado() != null){
-                movi.setEmpleado(movimientoact.getEmpleado());
+            if(movimientoact.getEmpleado(id) != null){
+                movi.setEmpleado(id,movimientoact.getEmpleado(id));
             }
             return movi;
         }catch (Exception e){
@@ -70,12 +69,12 @@ public class GestorMovimiento_dinero {
     }
 
     //hacer el updpate total
-    public Movimiento_dinero updateMovimientoAll(Movimiento_dinero movimientoact, int consecutivo) throws Exception {
+    public Movimiento_dinero updateMovimientoAll(Movimiento_dinero movimientoact, long id) throws Exception {
         try {
-            Movimiento_dinero movi =getMovimiento(consecutivo);
-            movi.setMonto(movimientoact.getMonto());
-            movi.setConcepto(movimientoact.getConcepto());
-            movi.setEmpleado(movimientoact.getEmpleado());
+            Movimiento_dinero movi =getMovimiento(id);
+            movi.setMonto(id,movimientoact.getMonto(id));
+            movi.setConcepto(id,movimientoact.getConcepto(id));
+            movi.setEmpleado(id,movimientoact.getEmpleado(id));
             return movi;
         }catch (Exception e){
             throw new Exception("movimiento no existe, fallo actualización");
@@ -84,9 +83,9 @@ public class GestorMovimiento_dinero {
 
 
     //hacer el delete
-    public String deleteMovimiento(int consecutivo) throws Exception {
+    public String deleteMovimiento(long id) throws Exception {
         try {
-            Movimiento_dinero movidel=getMovimiento(consecutivo);
+            Movimiento_dinero movidel=getMovimiento(id);
             this.movimientos.remove(movidel);
             return "eliminado exitoso";
         }catch (Exception e){

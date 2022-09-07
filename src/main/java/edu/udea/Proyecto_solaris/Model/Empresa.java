@@ -14,11 +14,15 @@ public class Empresa {
 
     private List<Movimiento_dinero> transacciones;
 
-    public Empresa(String nombre, String direccion, String telefono, String NIT) {
+    public Empresa(long id, String nombre, String direccion, String telefono, String NIT) {
+        this.id=id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.NIT = NIT;
+    }
+
+    public Empresa() {
     }
 
     public long getId() {

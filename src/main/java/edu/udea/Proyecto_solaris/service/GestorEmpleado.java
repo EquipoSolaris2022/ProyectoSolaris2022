@@ -19,10 +19,10 @@ public class GestorEmpleado {
 
         //String nombre, String direccion, String telefono, String NIT
 
-        this.empresa.add(new Empresa("empresa1", "calle falsa 123", "3111111", "123456789"));
+        this.empresa.add(new Empresa(1,"empresa1", "calle falsa 123", "3111111", "123456789"));
 
-        this.empleados.add(new Empleado("Prueba1", "Prueba", empresa.get(0),"operador"));
-        this.empleados.add(new Empleado("Prueba1", "Andres", empresa.get(0), "admin"));
+        this.empleados.add(new Empleado(1,"Prueba1", "Prueba", empresa.get(0),"operador"));
+        this.empleados.add(new Empleado(1,"Prueba1", "Andres", empresa.get(0), "admin"));
     }
 
     public Empleado getEmpleado(String nombreEmpleado) throws Exception {
