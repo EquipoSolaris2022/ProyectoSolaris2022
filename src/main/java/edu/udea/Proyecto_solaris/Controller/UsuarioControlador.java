@@ -30,23 +30,23 @@ public class UsuarioControlador {
         }
     }
 
-    @GetMapping("/usuario/{id}")
+    @GetMapping("/user/{id}")
 
-    public ResponseEntity<String> getUsuarioPath (@PathVariable String id) {
-        return new ResponseEntity<>(id, HttpStatus.OK);
+    public ResponseEntity<Empleado> getUsuarioPath (@PathVariable long id) throws Exception {
+        return new ResponseEntity<>(gestorUsuario.getEmpleado(id), HttpStatus.OK);
     }
-    @DeleteMapping("/usuario/{id}")
-    public ResponseEntity <ObjetoRespuesta> deleteUsuario(@PathVariable String nombre){
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity <ObjetoRespuesta> deleteUsuario(@PathVariable long id){
         try {
-            String mensaje = gestorUsuario.deleteEmpleado(nombre);
+            String mensaje = gestorUsuario.deleteEmpleado(id);
 
             return new ResponseEntity<>(new ObjetoRespuesta(mensaje,null),HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PatchMapping("/usuario/{id}")
-    public ResponseEntity <ObjetoRespuesta> patchUsuario(@RequestBody Empleado useri, @PathVariable String id) {
+    @PatchMapping("/user/{id}")
+    public ResponseEntity <ObjetoRespuesta> patchUsuario(@RequestBody Empleado useri, @PathVariable long id) {
         try {
             Empleado user = gestorUsuario.updateEmpleado(useri, id);
             return new ResponseEntity<>(new ObjetoRespuesta("Actualización Exitosa", user), HttpStatus.OK);
