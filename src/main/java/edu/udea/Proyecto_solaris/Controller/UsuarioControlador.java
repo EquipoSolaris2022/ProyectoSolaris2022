@@ -14,13 +14,13 @@ import java.util.List;
 public class UsuarioControlador {
     GestorEmpleado gestorUsuario = new GestorEmpleado();
 
-    @GetMapping("/usuarios")
+    @GetMapping("/users")
     public ResponseEntity <ArrayList<Empleado>> getUsuarios(){
         return new ResponseEntity<>(gestorUsuario.getEmpleados(), HttpStatus.ACCEPTED);
 
     }
 
-    @PostMapping("/usuarios")
+    @PostMapping("/users")
     public ResponseEntity<String> postUsuarios(@RequestBody Empleado usuario) {
         try {
             String mensaje = gestorUsuario.setEmpleado(usuario);
