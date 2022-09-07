@@ -46,16 +46,15 @@ public class Movimiento_dinero {
     public Empresa getEmpresa(long id) {
         return empresa;
     }
-
+    public void setEmpresa(long id, Empresa empresa) {
+        this.empresa = empresa;
+    }
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setEmpresa(long id, Empresa empresa) {
-        this.empresa = empresa;
-    }
+
 }
