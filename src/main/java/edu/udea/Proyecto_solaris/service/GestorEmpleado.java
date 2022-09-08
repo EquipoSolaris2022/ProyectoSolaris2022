@@ -19,7 +19,7 @@ public class GestorEmpleado {
 
         //String nombre, String direccion, String telefono, String NIT
 
-        this.empresa.add(new Empresa("empresa1", "calle falsa 123", "3111111", "123456789"));
+        this.empresa.add(new Empresa(11111,"empresa1", "calle falsa 123", "3111111", "123456789"));
 
         this.empleados.add(new Empleado(1111111,"Prueba1", "Prueba", empresa.get(0),"operador"));
         this.empleados.add(new Empleado(2222222,"Prueba1", "Andres", empresa.get(0), "admin"));

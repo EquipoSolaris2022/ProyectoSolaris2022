@@ -1,5 +1,6 @@
 package edu.udea.Proyecto_solaris.service;
 
+import edu.udea.Proyecto_solaris.Model.Empleado;
 import edu.udea.Proyecto_solaris.Model.Empresa;
 
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ public class GestorEmpresa {
     }
 
     //Consultar solo una empresa
-    public Empresa getEmpresa(String nombreEmpresa) throws Exception {
+    public Empresa getEmpresa(String NIT) throws Exception {
         for(Empresa empresa: this.empresas){
-            if(empresa.getNombre().equals(nombreEmpresa)){
+            if(empresa.getNIT().equals(NIT)){
                 return empresa;
             }
         }
@@ -40,7 +41,7 @@ public class GestorEmpresa {
     }
 
     //Ediatr una empresa
-    public Empresa updateEmpresa(Empresa empresa_update,String id) throws Exception {
+    public Empresa updateEmpresa(Empresa empresa_update,long id) throws Exception {
         try {
             Empresa empresa_bd= getEmpresa(id);
             if(empresa_update.getDireccion() != null && !empresa_update.getDireccion().equals("")){
@@ -60,7 +61,7 @@ public class GestorEmpresa {
     }
 
     //Eliminar una empresa
-    public String deleteEmpresa(String id) throws Exception {
+    public String deleteEmpresa(long id) throws Exception {
         try {
             Empresa empresa = getEmpresa(id);
             this.empresas.remove(empresa);
@@ -68,5 +69,13 @@ public class GestorEmpresa {
         } catch (Exception e) {
             throw new Exception("La empresa no existe no se puede eliminar");
         }
+    }
+    public Empresa getEmpresa(long id) throws Exception {
+        for(Empresa empresa: this.empresas){
+            if(empresa.getId()==id ){
+                return empresa;
+            }
+        }
+        throw new Exception("Empleado No Existe");
     }
 }
