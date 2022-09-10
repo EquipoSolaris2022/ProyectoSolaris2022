@@ -17,7 +17,7 @@ public class GestorMovimiento_dinero {
         this.movimientos=new ArrayList<>();
         Empresa MisionTIC =new Empresa(1,"empresa1","norte 1","12345","12345678");
         Empleado Andres=new Empleado(1,"andres", "andrestapia@gmail.com",MisionTIC,"administrador" );
-        this.movimientos.add(new Movimiento_dinero(100,"gasto",Andres,1,MisionTIC));
+        this.movimientos.add(new Movimiento_dinero(1,100,"gasto",Andres,MisionTIC));
     }
 
     public Movimiento_dinero getMovimiento(long id) throws Exception {
@@ -50,7 +50,7 @@ public class GestorMovimiento_dinero {
     public void setMovimientos(ArrayList<Movimiento_dinero> movimientos) {this.movimientos = movimientos;}
 
     //hacer el update parcial
-    public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, long id) throws Exception {
+  /*  public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, long id) throws Exception {
         try {
             Movimiento_dinero movi =getMovimiento(id);
             if(movimientoact.getMonto(id) != 0){
@@ -91,7 +91,11 @@ public class GestorMovimiento_dinero {
         }catch (Exception e){
             throw new Exception("Movimiento no existe para eliminar");
         }
-    }
+    }*/
+
+
+
+
 
 }
 

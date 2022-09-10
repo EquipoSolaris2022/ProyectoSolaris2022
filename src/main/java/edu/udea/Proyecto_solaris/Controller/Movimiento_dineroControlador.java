@@ -15,7 +15,7 @@ import java.util.List;
 public class Movimiento_dineroControlador {
     GestorMovimiento_dinero gestormovimiento = new GestorMovimiento_dinero();
 
-    @GetMapping("/empresa/{idempresa}/{Allid}")
+    @GetMapping("/enterprises/{id}/movimiento")
     public ResponseEntity<List<Movimiento_dinero>> getMovimientos(){
         return new ResponseEntity<>(gestormovimiento.getMovimientos(), HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class Movimiento_dineroControlador {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/empresa/{idempresa}/{id}")
+   /* @PutMapping("/empresa/{idempresa}/{id}")
     public ResponseEntity <ObjetoRespuesta> putMovimiento(@RequestBody Movimiento_dinero moviparam, @PathVariable long id) {
         try {
             Movimiento_dinero movi = gestormovimiento.updateMovimientoAll(moviparam, id);
@@ -67,7 +67,7 @@ public class Movimiento_dineroControlador {
         } catch (Exception e) {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 
 
 

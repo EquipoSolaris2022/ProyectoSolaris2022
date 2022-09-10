@@ -26,18 +26,25 @@ public class GestorEmpresa {
                 return empresa;
             }
         }
-        throw new Exception("Empresa no existe");
+        return null;
     }
 
     //Crear una empresa
     public String setEmpresa(Empresa Empresa_parametro) throws Exception {
+
         try {
-            getEmpresa(Empresa_parametro.getNombre());
+
+            if(getEmpresa(Empresa_parametro.getNIT()) == null){
+                this.empresas.add(Empresa_parametro);
+                return "Se creo la empresa correctamente";
+            }else{
+                return "La empresa ya existe";
+            }
+
         } catch (Exception e) {
-            this.empresas.add(Empresa_parametro);
-            return "Se creo la empresa correctamente";
+            throw new Exception(e.getMessage());
         }
-        throw new Exception("La empresa ya existe");
+
     }
 
     //Ediatr una empresa

@@ -1,9 +1,11 @@
 package edu.udea.Proyecto_solaris.Model;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
-import  edu.udea.Proyecto_solaris.Model.*;
 
 public class Empresa {
+
+    @NotNull(message = "Variable no null")
     private long id;
     private String nombre;
     private String direccion;
