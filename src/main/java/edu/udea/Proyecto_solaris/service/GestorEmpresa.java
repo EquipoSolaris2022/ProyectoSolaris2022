@@ -51,6 +51,9 @@ public class GestorEmpresa {
     public Empresa updateEmpresa(Empresa empresa_update,long id) throws Exception {
         try {
             Empresa empresa_bd= getEmpresa(id);
+            if(empresa_update.getNombre() != null && !empresa_update.getNombre().equals("")){
+                empresa_bd.setNombre(empresa_update.getNombre());
+            }
             if(empresa_update.getDireccion() != null && !empresa_update.getDireccion().equals("")){
                 empresa_bd.setDireccion(empresa_update.getDireccion());
             }

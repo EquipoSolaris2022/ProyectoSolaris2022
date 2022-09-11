@@ -21,8 +21,8 @@ public class Movimiento_dinero {
         this.empresa=empresa;
 
     }
-    public Movimiento_dinero(long id,double monto, String concepto, long id_empleado) {
-        this.id = id;
+    public Movimiento_dinero(double monto, String concepto, long id_empleado) {
+
         this.monto = monto;
         this.concepto = concepto;
         this.id_empleado =   id_empleado;
@@ -36,9 +36,6 @@ public class Movimiento_dinero {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public double getMonto() {
         return monto;

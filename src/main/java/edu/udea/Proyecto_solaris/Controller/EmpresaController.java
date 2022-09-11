@@ -29,13 +29,13 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping("/enterprises/{NIT}")
+    /*@GetMapping("/enterprises/{NIT}")
 
     public ResponseEntity<Empresa> getEmpresaPath (@PathVariable String NIT) throws Exception {
         return new ResponseEntity<>(gestorEmpresa.getEmpresa(NIT), HttpStatus.OK);
     }
-
-    @GetMapping("/enterprises/{id}")
+*/
+    @GetMapping("/enterprise/{id}")
 
     public ResponseEntity<Empresa> getEmpresaPath (@PathVariable long id) throws Exception {
         return new ResponseEntity<>(gestorEmpresa.getEmpresa(id), HttpStatus.OK);

@@ -24,10 +24,10 @@ public class MovimientoDineroController {
     }
 
     @PostMapping("/enterprises/{id}/movements")
-    public ResponseEntity<ArrayList<Movimiento_dinero>> postMovimiento(@RequestBody Movimiento_dinero movimiento) throws Exception{
+    public ResponseEntity<ArrayList<Movimiento_dinero>> postMovimiento(@PathVariable long id,@RequestBody Movimiento_dinero movimiento) throws Exception{
 
 
-            ArrayList mensaje = movimientoDinero.postMovimiento(movimiento);
+            ArrayList mensaje = movimientoDinero.postMovimiento(id,movimiento);
             return new ResponseEntity<>(mensaje, HttpStatus.OK);
 
     }

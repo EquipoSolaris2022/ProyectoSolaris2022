@@ -33,7 +33,9 @@ public class UsuarioControlador {
     @GetMapping("/user/{id}")
 
     public ResponseEntity<Empleado> getUsuarioPath (@PathVariable long id) throws Exception {
-        return new ResponseEntity<>(gestorUsuario.getEmpleado(id), HttpStatus.OK);
+
+            return new ResponseEntity<>(gestorUsuario.getEmpleado(id), HttpStatus.OK);
+
     }
     @DeleteMapping("/user/{id}")
     public ResponseEntity <ObjetoRespuesta> deleteUsuario(@PathVariable long id){

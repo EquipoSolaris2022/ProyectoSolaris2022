@@ -11,6 +11,7 @@ public class GestorMovimientoDinero {
     private ArrayList<Empleado> empleados;
     private ArrayList<Movimiento_dinero> movimientos;
 
+
     public GestorMovimientoDinero (){
 
         this.empresas = new ArrayList<>();
@@ -49,7 +50,7 @@ public class GestorMovimientoDinero {
     }
 
 
-    public ArrayList<Movimiento_dinero> postMovimiento(Movimiento_dinero movimiento) throws Exception{
+    public ArrayList<Movimiento_dinero> postMovimiento(long id_empresa,Movimiento_dinero movimiento) throws Exception{
 
         try {
             Empleado empleado = new Empleado();
@@ -57,8 +58,12 @@ public class GestorMovimientoDinero {
             for (Empleado trabajador: this.empleados) {
                 if(trabajador.getId() == movimiento.getId_empleado()){
                     empleado = trabajador;
+                    for (Empresa empresa: this.empresas) {
+                        if(empresa.getId() == id_empresa){
+                            this.movimientos.add(new Movimiento_dinero(id,movimiento.getMonto(),movimiento.getConcepto(),empleado,empresa));
 
-                    this.movimientos.add(new Movimiento_dinero(id,movimiento.getMonto(),movimiento.getConcepto(),empleado,empleado.getEmpresa()));
+                        }
+                    }
 
                 }
             }
