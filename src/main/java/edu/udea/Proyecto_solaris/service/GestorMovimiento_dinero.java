@@ -12,12 +12,22 @@ public class GestorMovimiento_dinero {
     el sistema permite consultar (uno y varios), crear, editar y eliminar movimiento de dinero
     */
     private ArrayList<Movimiento_dinero> movimientos;
-    private ArrayList<Empresa> empresa;
+    private ArrayList<Empresa> empresas;
+    private ArrayList<Empleado> empleados;
     public GestorMovimiento_dinero() {
         this.movimientos=new ArrayList<>();
-        Empresa MisionTIC =new Empresa(1,"empresa1","norte 1","12345","12345678");
-        Empleado Andres=new Empleado(1,"andres", "andrestapia@gmail.com",MisionTIC,"administrador" );
-        this.movimientos.add(new Movimiento_dinero(1,100,"gasto",Andres,MisionTIC));
+        this.empresas = new ArrayList<>();
+        this.empleados = new ArrayList<>();
+        empresas.add(new Empresa(1,"empresa1","norte 1","12345","12345678"));
+        empresas.add(new Empresa(2,"empresa2","norte 2","12345","99887766"));
+
+        empleados.add(new Empleado(1,"Prueba1", "Prueba", empresas.get(0),"operador"));
+        empleados.add(new Empleado(2,"Prueba2", "Prueba2", empresas.get(0),"operador"));
+        empleados.add(new Empleado(3,"Prueba3", "Prueba3", empresas.get(1),"operador"));
+
+        movimientos.add(new Movimiento_dinero(1,10000,"ingreso",empleados.get(0),empresas.get(0)));
+        movimientos.add(new Movimiento_dinero(2,20000,"egreso",empleados.get(1),empresas.get(0)));
+        movimientos.add(new Movimiento_dinero(3,30000,"ingreso",empleados.get(2),empresas.get(1)));
     }
 
     public Movimiento_dinero getMovimiento(long id) throws Exception {
@@ -31,56 +41,64 @@ public class GestorMovimiento_dinero {
 
     //hacer un getAll
 
-    public ArrayList<Movimiento_dinero> getMovimientos()  {
-        return movimientos;
-    }
-    public String setMovimiento(Movimiento_dinero moviparam) throws Exception {
+    public ArrayList<Movimiento_dinero> getMovimientos(long idEmpresa)  throws Exception{
         try {
-            //Consulta de existencia de usuario
-            getMovimiento(moviparam.getId());
-        } catch (Exception e) {
-            // Codigo de crear un movimiento
-            this.movimientos.add(moviparam);
-            return "Creacion del movimiento Exitosa";
+            ArrayList<Movimiento_dinero> dinero;
+            dinero = new ArrayList<>();
+            for (Movimiento_dinero movimiento: this.movimientos) {
+
+                if(movimiento.getEmpresa().getId() == idEmpresa ){
+                    movimiento.getEmpleado().setEmpresa(null);
+                    dinero.add(movimiento);
+                }
+            }
+            return dinero;
+        }catch (Exception e){
+            throw new Exception("Empresa No Existe" + e.getMessage());
         }
-        //Error si el movimiento ya existe
-        throw new Exception("Movimiento Existe");
+    }
+    public ArrayList<Movimiento_dinero> setMovimiento(long idempresa, Movimiento_dinero moviparam) throws Exception {
+        try {
+            Empleado empleado = new Empleado();
+            long id = (long) ((Math.random() * (100000 - 1)) + 1);
+            for (Empleado trabajador: this.empleados) {
+                if(trabajador.getId() == moviparam.getId_empleado()){
+                    empleado = trabajador;
+                    for (Empresa empresa: this.empresas) {
+                        if(empresa.getId() == idempresa){
+                            this.movimientos.add(new Movimiento_dinero(id,moviparam.getMonto(),moviparam.getConcepto(),empleado,empresa));
+
+                        }
+                    }
+
+                }
+            }
+            return movimientos;
+        }catch (Exception e){
+            throw new Exception("Empleado No Existe" + e.getMessage());
+        }
     }
 
-    public void setMovimientos(ArrayList<Movimiento_dinero> movimientos) {this.movimientos = movimientos;}
+
 
     //hacer el update parcial
-  /*  public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, long id) throws Exception {
+    public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, long id) throws Exception {
         try {
             Movimiento_dinero movi =getMovimiento(id);
-            if(movimientoact.getMonto(id) != 0){
-                movi.setMonto(id,movimientoact.getMonto(id));
+            if(movimientoact.getMonto() != 0){
+                movi.setMonto(movimientoact.getMonto());
             }
-            if(movimientoact.getConcepto(id) != null){
-                movi.setConcepto(id,movimientoact.getConcepto(id));
+            if(movimientoact.getConcepto() != null && !movimientoact.getConcepto().equals("")){
+                movi.setConcepto(movimientoact.getConcepto());
             }
-            if(movimientoact.getEmpleado(id) != null){
-                movi.setEmpleado(id,movimientoact.getEmpleado(id));
+            if(movimientoact.getEmpleado() != null){
+                movi.setEmpleado(movimientoact.getEmpleado());
             }
             return movi;
         }catch (Exception e){
             throw new Exception("movimiento no existe, fallo actualización");
         }
     }
-
-    //hacer el updpate total
-    public Movimiento_dinero updateMovimientoAll(Movimiento_dinero movimientoact, long id) throws Exception {
-        try {
-            Movimiento_dinero movi =getMovimiento(id);
-            movi.setMonto(id,movimientoact.getMonto(id));
-            movi.setConcepto(id,movimientoact.getConcepto(id));
-            movi.setEmpleado(id,movimientoact.getEmpleado(id));
-            return movi;
-        }catch (Exception e){
-            throw new Exception("movimiento no existe, fallo actualización");
-        }
-    }
-
 
     //hacer el delete
     public String deleteMovimiento(long id) throws Exception {
@@ -91,7 +109,7 @@ public class GestorMovimiento_dinero {
         }catch (Exception e){
             throw new Exception("Movimiento no existe para eliminar");
         }
-    }*/
+    }
 
 
 
