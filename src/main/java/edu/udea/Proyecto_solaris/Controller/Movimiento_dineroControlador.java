@@ -1,6 +1,7 @@
 package edu.udea.Proyecto_solaris.Controller;
 
 import edu.udea.Proyecto_solaris.Model.Movimiento_dinero;
+import edu.udea.Proyecto_solaris.Repositorio.Movimiento_dineroRepositorio;
 import edu.udea.Proyecto_solaris.service.GestorMovimiento_dinero;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.RequestPath;
@@ -15,16 +16,19 @@ import java.util.List;
 
 @RestController
 public class Movimiento_dineroControlador {
-    GestorMovimiento_dinero gestormovimiento = new GestorMovimiento_dinero();
+    GestorMovimiento_dinero gestormovimiento;
+            public Movimiento_dineroControlador(GestorMovimiento_dinero service){
+                this.gestormovimiento=service;
+            }
 
     @GetMapping("/enterprises/{id}/movements")
     public ResponseEntity<List<Movimiento_dinero>> getMovimientos(@PathVariable long id) throws Exception{
-        return new ResponseEntity<>(gestormovimiento.getMovimientos(id), HttpStatus.OK);
+        return new ResponseEntity<>(gestormovimiento.getMovimientosByIDEmpresa(id), HttpStatus.OK);
     }
 
     @PostMapping("/enterprises/{id}/movements")
-    public ResponseEntity<ArrayList> postMovimiento(@PathVariable long id, @RequestBody Movimiento_dinero moviparam) throws Exception {
-        ArrayList mensaje = gestormovimiento.setMovimiento(id, moviparam);
+    public ResponseEntity<String> postMovimiento(@PathVariable long id, @RequestBody Movimiento_dinero moviparam) throws Exception {
+        String mensaje = gestormovimiento.setMovimiento(id,moviparam);
         return new ResponseEntity<>(mensaje, HttpStatus.OK);
     }
 

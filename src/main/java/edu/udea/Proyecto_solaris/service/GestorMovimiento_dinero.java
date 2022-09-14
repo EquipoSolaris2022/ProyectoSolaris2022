@@ -1,89 +1,49 @@
 package edu.udea.Proyecto_solaris.service;
 
-import edu.udea.Proyecto_solaris.Model.Empleado;
 import edu.udea.Proyecto_solaris.Model.Empresa;
 import edu.udea.Proyecto_solaris.Model.Movimiento_dinero;
+import edu.udea.Proyecto_solaris.Repositorio.Movimiento_dineroRepositorio;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class GestorMovimiento_dinero {
-/*
-    el sistema permite
-    el sistema permite consultar (uno y varios), crear, editar y eliminar movimiento de dinero
-    */
-    private ArrayList<Movimiento_dinero> movimientos;
-    private ArrayList<Empresa> empresas;
-    private ArrayList<Empleado> empleados;
-    public GestorMovimiento_dinero() {
-        this.movimientos=new ArrayList<>();
-        this.empresas = new ArrayList<>();
-        this.empleados = new ArrayList<>();
-        empresas.add(new Empresa(1,"empresa1","norte 1","12345","12345678"));
-        empresas.add(new Empresa(2,"empresa2","norte 2","12345","99887766"));
+    private Movimiento_dineroRepositorio repo;
 
-        empleados.add(new Empleado(1,"Prueba1", "Prueba", empresas.get(0),"operador"));
-        empleados.add(new Empleado(2,"Prueba2", "Prueba2", empresas.get(0),"operador"));
-        empleados.add(new Empleado(3,"Prueba3", "Prueba3", empresas.get(1),"operador"));
-
-        movimientos.add(new Movimiento_dinero(1,10000,"ingreso",empleados.get(0),empresas.get(0)));
-        movimientos.add(new Movimiento_dinero(2,20000,"egreso",empleados.get(1),empresas.get(0)));
-        movimientos.add(new Movimiento_dinero(3,30000,"ingreso",empleados.get(2),empresas.get(1)));
+    public GestorMovimiento_dinero(Movimiento_dineroRepositorio repo) {
+        this.repo=repo;
     }
 
     public Movimiento_dinero getMovimiento(long id) throws Exception {
-        for(Movimiento_dinero movimiento:this.movimientos){
-            if(movimiento.getId()==id){
-                return movimiento;
+        Optional<Movimiento_dinero> movibd=repo.findById(id);
+            if(movibd.isPresent()){
+                return movibd.get();
             }
-        }
         throw new Exception("Movimiento no existe");
     }
 
     //hacer un getAll
 
-    public ArrayList<Movimiento_dinero> getMovimientos(long idEmpresa)  throws Exception{
+    public List<Movimiento_dinero> getMovimientosByIDEmpresa(long id) throws Exception {
         try {
-            ArrayList<Movimiento_dinero> dinero;
-            dinero = new ArrayList<>();
-            for (Movimiento_dinero movimiento: this.movimientos) {
-
-                if(movimiento.getEmpresa().getId() == idEmpresa ){
-                    movimiento.getEmpleado().setEmpresa(null);
-                    dinero.add(movimiento);
-                }
-            }
-            return dinero;
+            return repo.findAllById(id); //corregir
+            repo.fin
         }catch (Exception e){
             throw new Exception("Empresa No Existe" + e.getMessage());
         }
     }
-    public ArrayList<Movimiento_dinero> setMovimiento(long idempresa, Movimiento_dinero moviparam) throws Exception {
-        try {
-            Empleado empleado = new Empleado();
-            long id = (long) ((Math.random() * (100000 - 1)) + 1);
-            for (Empleado trabajador: this.empleados) {
-                if(trabajador.getId() == moviparam.getId_empleado()){
-                    empleado = trabajador;
-                    for (Empresa empresa: this.empresas) {
-                        if(empresa.getId() == idempresa){
-                            this.movimientos.add(new Movimiento_dinero(id,moviparam.getMonto(),moviparam.getConcepto(),empleado,empresa));
 
-                        }
-                    }
-
-                }
-            }
-            return movimientos;
-        }catch (Exception e){
-            throw new Exception("Empleado No Existe" + e.getMessage());
-        }
+    public String setMovimiento(long idEmpresa, Movimiento_dinero moviparam) throws Exception {
+        repo.save(moviparam);
+        return "Movimiento creado exitosamente";
     }
 
 
 
     //hacer el update parcial
     public Movimiento_dinero updateMovimiento(Movimiento_dinero movimientoact, long id) throws Exception {
-        try {
             Movimiento_dinero movi =getMovimiento(id);
             if(movimientoact.getMonto() != 0){
                 movi.setMonto(movimientoact.getMonto());
@@ -94,17 +54,14 @@ public class GestorMovimiento_dinero {
             if(movimientoact.getEmpleado() != null){
                 movi.setEmpleado(movimientoact.getEmpleado());
             }
-            return movi;
-        }catch (Exception e){
-            throw new Exception("movimiento no existe, fallo actualización");
-        }
+            return repo.save(movimientoact);
+
     }
 
     //hacer el delete
     public String deleteMovimiento(long id) throws Exception {
         try {
-            Movimiento_dinero movidel=getMovimiento(id);
-            this.movimientos.remove(movidel);
+            repo.deleteById(id);
             return "eliminado exitoso";
         }catch (Exception e){
             throw new Exception("Movimiento no existe para eliminar");

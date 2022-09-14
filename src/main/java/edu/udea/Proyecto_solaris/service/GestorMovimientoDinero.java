@@ -25,9 +25,9 @@ public class GestorMovimientoDinero {
         empleados.add(new Empleado(2,"Prueba2", "Prueba2", empresas.get(0),"operador"));
         empleados.add(new Empleado(3,"Prueba3", "Prueba3", empresas.get(1),"operador"));
 
-        movimientos.add(new Movimiento_dinero(1,10000,"ingreso",empleados.get(0),empresas.get(0)));
-        movimientos.add(new Movimiento_dinero(2,20000,"egreso",empleados.get(1),empresas.get(0)));
-        movimientos.add(new Movimiento_dinero(3,30000,"ingreso",empleados.get(2),empresas.get(1)));
+        movimientos.add(new Movimiento_dinero(10000,"ingreso",empleados.get(0),empresas.get(0)));
+        movimientos.add(new Movimiento_dinero(20000,"egreso",empleados.get(1),empresas.get(0)));
+        movimientos.add(new Movimiento_dinero(30000,"ingreso",empleados.get(2),empresas.get(1)));
 
     }
 
@@ -56,11 +56,11 @@ public class GestorMovimientoDinero {
             Empleado empleado = new Empleado();
             long id = (long) ((Math.random() * (100000 - 1)) + 1);
             for (Empleado trabajador: this.empleados) {
-                if(trabajador.getId() == movimiento.getId_empleado()){
+                if(trabajador.getId() == movimiento.getEmpleado().getId()){
                     empleado = trabajador;
                     for (Empresa empresa: this.empresas) {
                         if(empresa.getId() == id_empresa){
-                            this.movimientos.add(new Movimiento_dinero(id,movimiento.getMonto(),movimiento.getConcepto(),empleado,empresa));
+                            this.movimientos.add(new Movimiento_dinero(movimiento.getMonto(),movimiento.getConcepto(),empleado,empresa));
 
                         }
                     }

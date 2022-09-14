@@ -1,33 +1,36 @@
 package edu.udea.Proyecto_solaris.Model;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-
+import javax.persistence.*;
+@Entity
+@Table(name= "Movimiento dinero")
 public class Movimiento_dinero {
-
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+    @Column(name= "monto")
     private double monto;
+    @Column(name="concepto")
     private String concepto;
+    @ManyToOne
+    @JoinColumn(name="IdEmpleado", referencedColumnName = "id")
     private Empleado empleado;
-
+    @ManyToOne
+    @JoinColumn(name="IdEmpresa", referencedColumnName = "id")
     private Empresa empresa;
-
-    private long id_empleado;
-    public Movimiento_dinero(long id,double monto, String concepto, Empleado empleado,  Empresa empresa) {
-        this.id = id;
+    @Column(name= "Fecha de creacion")
+    private LocalDate CreatedAt;
+    @Column(name= "Fecha de actualizacion")
+    private LocalDate UpdatedAt;
+    public Movimiento_dinero(double monto, String concepto, Empleado empleado,  Empresa empresa) {
         this.monto = monto;
         this.concepto = concepto;
         this.empleado = empleado;
         this.empresa=empresa;
-
+        this.CreatedAt= LocalDate.now();
     }
-    public Movimiento_dinero(double monto, String concepto, long id_empleado) {
-
-        this.monto = monto;
-        this.concepto = concepto;
-        this.id_empleado =   id_empleado;
-    }
-
 
     public Movimiento_dinero() {
     }
@@ -69,12 +72,12 @@ public class Movimiento_dinero {
         this.empresa = empresa;
     }
 
-
-    public long getId_empleado() {
-        return id_empleado;
+    public LocalDate getCreatedAt() {
+        return CreatedAt;
     }
 
-    public void setId_empleado(long id_empleado) {
-        this.id_empleado = id_empleado;
+    public LocalDate getUpdatedAt() {
+        return UpdatedAt;
     }
+
 }

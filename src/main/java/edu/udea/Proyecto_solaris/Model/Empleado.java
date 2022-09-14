@@ -2,15 +2,25 @@ package edu.udea.Proyecto_solaris.Model;
 
 import java.util.List;
 import  edu.udea.Proyecto_solaris.Model.*;
-public class Empleado {
+import jdk.jfr.Enabled;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name= "empleado")
+public class Empleado {
+    @Id
     private long id;
+    @Column(name= "nombre")
     private String nombre;
+    @Column(name= "correo")
     private String correo;
+    @OneToMany(mappedBy = "empleado")
+    private List<Movimiento_dinero> transacciones;
+    @ManyToOne
     private Empresa empresa;
     private String rol;
 
-    private List<Movimiento_dinero> transacciones;
     public Empleado(long id, String nombre, String correo, Empresa empresa, String rol) {
         this.id=id;
         this.nombre = nombre;

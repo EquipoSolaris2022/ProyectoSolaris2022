@@ -1,19 +1,24 @@
 package edu.udea.Proyecto_solaris.Model;
 
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name= "empresa")
 public class Empresa {
-
-    @NotNull(message = "Variable no null")
+    @Id
     private long id;
+    @Column(name= "nombre")
     private String nombre;
+    @Column(name="direccion")
     private String direccion;
+    @Column(name="telefono")
     private String telefono;
+    @Column
     private String NIT;
-
+    @OneToMany(mappedBy = "empresa")
     private List<Empleado> empleados;
-
+    @OneToMany(mappedBy = "empresa")
     private List<Movimiento_dinero> transacciones;
 
     public Empresa(long id, String nombre, String direccion, String telefono, String NIT) {
