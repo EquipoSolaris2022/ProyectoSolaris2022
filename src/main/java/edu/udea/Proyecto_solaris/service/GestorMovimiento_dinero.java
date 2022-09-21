@@ -28,8 +28,7 @@ public class GestorMovimiento_dinero {
 
     public List<Movimiento_dinero> getMovimientosByIDEmpresa(long id) throws Exception {
         try {
-            return repo.findAllById(id); //corregir
-            repo.fin
+            return repo.findAllByempresa(id);
         }catch (Exception e){
             throw new Exception("Empresa No Existe" + e.getMessage());
         }

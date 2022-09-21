@@ -1,3 +1,4 @@
+/*
 package edu.udea.Proyecto_solaris.service;
 
 import edu.udea.Proyecto_solaris.Model.*;
@@ -117,3 +118,4 @@ public class GestorMovimientoDinero {
 
 
 }
+*/

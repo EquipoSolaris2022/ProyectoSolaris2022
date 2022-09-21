@@ -1,3 +1,4 @@
+/*
 package edu.udea.Proyecto_solaris.Entities;
 
 import edu.udea.Proyecto_solaris.Model.Empresa;
@@ -24,5 +25,5 @@ public class Users implements Serializable {
     @Column(name = "rol")
     private String rol;
 }
-
+*/
 

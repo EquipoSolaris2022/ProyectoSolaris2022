@@ -1,3 +1,4 @@
+/*
 package edu.udea.Proyecto_solaris.Repositories;
 
 import edu.udea.Proyecto_solaris.Entities.Users;
@@ -13,3 +14,4 @@ public interface UsersRepository extends CrudRepository<Users, Long> {
     Optional<Users> findByUsers (String username);
 
 }
+*/

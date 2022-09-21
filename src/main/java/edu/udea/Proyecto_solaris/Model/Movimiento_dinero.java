@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.persistence.*;
 @Entity
-@Table(name= "Movimiento dinero")
+@Table(name= "transacciones")
 public class Movimiento_dinero {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -20,9 +20,9 @@ public class Movimiento_dinero {
     @ManyToOne
     @JoinColumn(name="IdEmpresa", referencedColumnName = "id")
     private Empresa empresa;
-    @Column(name= "Fecha de creacion")
+    @Column(name= "FechaCreacion")
     private LocalDate CreatedAt;
-    @Column(name= "Fecha de actualizacion")
+    @Column(name= "FechaActualizacion")
     private LocalDate UpdatedAt;
     public Movimiento_dinero(double monto, String concepto, Empleado empleado,  Empresa empresa) {
         this.monto = monto;
