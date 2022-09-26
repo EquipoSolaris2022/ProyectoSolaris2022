@@ -47,9 +47,4 @@ public class FrontEndController {
         System.out.print(movimiento.getMonto());
         return "redirect:/IngMov";
     }
-
-
-
-
-
 }
