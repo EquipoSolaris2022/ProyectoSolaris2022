@@ -17,7 +17,6 @@ public class UsuarioControlador {
     @GetMapping("/users")
     public ResponseEntity <ArrayList<Empleado>> getUsuarios(){
         return new ResponseEntity<>(gestorUsuario.getEmpleados(), HttpStatus.ACCEPTED);
-
     }
 
     @PostMapping("/users")

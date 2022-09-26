@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@
 
 <div style="height: 100vh; width: 20vw; background-color: rgba(0, 0, 0, 0.2);">
   <div class="col-lg-10 mx-auto mb-4 w-30 p-3">
-    <img src="Logo.jpeg" class="img-thumbnail" height="200" width="300">
+    <img src="Logo.png" class="img-thumbnail" height="200" width="300">
   </div>
 
 
@@ -41,19 +41,18 @@
 
     <div class="position-absolute top-2 start-50 translate-middle-x" style="height: 42vh; width: 16vw; background-color:  rgba(0, 0, 0, 0.0);">
 
-      <form>
-
+      <form method="POST" th:object="${formingmov}" th:action="@{/}">
         <label>Monto</label>
         <div class="mx-auto" style="height: 0.1vh;"></div>
-        <input type="text" name="Monto" required> <p></p>
+        <input type="number" name="Monto" required th:field="*{monto}"> <p></p>
 
         <label>Concepto</label>
         <div class="mx-auto" style="height: 0.1vh;"></div>
-        <input type="text" name="Concepto" required><p></p>
+        <input type="text" name="Concepto" required th:field="*{concepto}"><p></p>
 
         <label>Fecha</label>
-        <div class="mx-auto" style="height: 0.1vh;"></div>
-        <input type="date" name="Fecha" required><p></p>
+        <div class="mx-auto" style="height: 0.1vh;" ></div>
+        <input type="date" name="Fecha"><p></p>
 
         <button
                 class="position-absolute bottom-0 start-50 translate-middle-x"

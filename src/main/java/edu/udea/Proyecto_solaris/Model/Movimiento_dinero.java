@@ -80,4 +80,16 @@ public class Movimiento_dinero {
         return UpdatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "Movimiento_dinero{" +
+                "id=" + id +
+                ", monto=" + monto +
+                ", concepto='" + concepto + '\'' +
+                ", empleado=" + empleado +
+                ", empresa=" + empresa +
+                ", CreatedAt=" + CreatedAt +
+                ", UpdatedAt=" + UpdatedAt +
+                '}';
+    }
 }
